@@ -1,0 +1,61 @@
+<html>
+  <head>
+    <title>Props</title>
+    <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      const Heading = (props) => {
+        return <h1>{props.Heading}</h1>;
+      };
+
+      class Header extends React.Component {
+        state = {
+          counter: [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 }],
+        };
+        //SPECIAL WAY TO PASS COMPONENT
+        render() {
+          return (
+            <div>
+              <Heading Heading={"THIS IS MAIN HEADING FOR TODAY"} />
+              {this.state.counter.map((id) => (
+                <Fruits />
+              ))}
+            </div>
+          );
+        }
+      }
+
+      const elements1 = ["A", "B", "C", "D"];
+      const elements = ["Apple", "Fruits", "Vegies", "Berry"];
+
+      class Fruits extends React.Component {
+        render() {
+          return (
+            <div>
+              {elements.map((i) => (
+                <FruitsList items={i} />
+              ))}
+            </div>
+          );
+        }
+      }
+
+      const FruitsList = (props) => {
+        return (
+          <div>
+            <ul>
+              <li key={props}>{props.items}</li>
+            </ul>
+          </div>
+        );
+      };
+
+      ReactDOM.render(<Header />, document.getElementById("root"));
+    </script>
+  </body>
+</html>
